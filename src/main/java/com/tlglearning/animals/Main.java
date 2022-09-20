@@ -1,36 +1,17 @@
 package com.tlglearning.animals;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 public class Main {
 
   public static void main(String[] args) {
-    List<Wolf> wolves = new ArrayList<>();
-
-    wolves.add(new Wolf());
-    wolves.add(new Wolf());
-    wolves.add(new Wolf());
-    wolves.add(new Dog());
-    wolves.add(new Dog());
-    wolves.add(new Dog());
-    Collections.shuffle(wolves);
-
-    for(Wolf w : wolves) {
-      System.out.println();
-      System.out.println(w.getClass().getName());
-      w.hunt();
-      w.vocalize();
-      if (w instanceof Dog) {
-        ((Dog) w).rollOver();
-      }
-//      if (w instanceof Dog) {
-//        ((Dog) w).whoAmI();
-//      } else {
-//        w.whoAmI();
-//      }
-    }
+    new Dog();
+    /*
+    0. Class initialization of Wold superclass(Object) - not necessary, because Object is already loaded and initialized - invisible
+    1. Class initialization of Wolf
+    2. Class initialization of Dog  - step 0-2 happened before new Dog()
+    (2a). Object's initialization of Dog instance. - invisible
+    3. Wolf's initialization of Dog instance
+    4. Dog's initialization of Dog instance - Dog constructor invoke super() first, then go check instance initialization from top to bottom before printout in Dog Class
+     */
   }
 
 }
